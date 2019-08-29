@@ -1,0 +1,94 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="@Url.Content("~/Content/SideBarMenu.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/SideMenuScripts/SideMenuAnimjs.js")
+
+</head>
+<body>
+    <div class="navbar navbar-fixed-top" style=" background-color: black;
+    color:white;
+    border-color:white;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (User.Identity.IsAuthenticated == true)
+                {
+
+                    <label id="ViewBag" class="glyphicon-user user_name">  @ViewBag.UserName </label>
+
+
+                }
+                else
+                {
+                    <label style="font-size:xx-large; font-family:'Times New Roman'" id="ViewBag" class="user_name">Welcome</label>
+                }
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated == true && User.IsInRole("Administrator"))
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Student")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    }
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated != true)
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Student")</li>
+                    }
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "Login")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    @if (User.Identity.IsAuthenticated == true && User.IsInRole("LOCAL"))
+    {
+        <div id="mySidebar" class="sidebar" style=" background-color: black;color:white;border-color:white;">
+            <ul style="font-size:5px">
+                <li>@Html.ActionLink("Courses Details", "DepartmentCourses", "Home", null, htmlAttributes: new { @id = "Courses", @class = "sidbarFont" })</li>
+                <li>@Html.ActionLink("Courses", "PersonCourses", "Student", null, htmlAttributes: new { @id = "Courses", @class = "sidbarFont" })</li>
+                <li>@Html.ActionLink("New Course", "RegisterToCourse", "Student", null, htmlAttributes: new { @id = "Courses", @class = "sidbarFont" })</li>
+            </ul>
+        </div>
+
+        <div id="main">
+            <button class="openbtn" onclick="openNav()">&#9776;More</button>
+        </div>
+    }
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<NewUniversity.Models.Person>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color:white">Hello @ViewData["UserName"]!</h2>
+
+@Styles.Render("~/Content/CommonStyle.css")
+
+<div class="alignCenter">
+
+    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+
+                <th><label id="lblLastName">Last Name</label></th>
+                <th> <label id="lblFirstName">First Name</label></th>
+                <th><label id="lblHireDate">Joining Date</label></th>
+                <th> <label id="lblEnrollDate">Enroll Date</label></th>
+                <th><label id="lblLocation">Location</label></th>
+                <th><label id="lblClick">Click Below</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">
+                    <div class="scorllit">
+                        <table>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td class="setWidth">
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td class="setWidth">
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td class="setWidth">
+                                        @Html.DisplayFor(modelItem => item.HireDate);
+                                    </td>
+                                    <td class="setWidth">
+                                        @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                                    </td>
+                                    <td class="setWidth">
+                                        @Html.DisplayFor(modelItem => item.OfficeAssignment.Location)
+                                    </td>
+                                    <td class="setWidth">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.PersonID }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.PersonID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.PersonID })
+                                    </td>
+
+
+                                </tr>
+
+                            }
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+           
+        </tbody>
+
+    </table>
+</div>
+
+
+
+
+

@@ -1,0 +1,89 @@
+﻿@model NewUniversity.Models.Person
+
+@{
+    ViewBag.Title = "Register";
+}
+
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+        @if (Model != null && Model.PersonID > 0)
+        {
+            <h1>
+                <label id="lblSuccess">Registration Success ! </label>
+            </h1>
+        }
+        else
+        {
+        <h4><label id="lblSuccess" style="color:red; font-style: italic">Enter below details and use credentials from email for log in after registration is success.</label></h4>
+        }
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <label id="lblLastName" class="control-label col-md-2" for="LastName"> Last Name :</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label id="lblFirstName" class="control-label col-md-2" for="FirstName"> First Name :</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label id="lblJoiningDate" class="control-label col-md-2" for="HireDate"> Joining Date :</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HireDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HireDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label id="lblEnrollmentDate" class="control-label col-md-2" for="EnrollmentDate"> Enrollment Date :</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EnrollmentDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EnrollmentDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label id="lblEmailAddress" class="control-label col-md-2" for="EmailAddress">Email Address :</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Register" class="btn btn-default" />
+        </div>
+    </div>
+
+    @*<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <label type="submit" value="Register" class="btn btn-default" />
+    </div>*@
+@*</div>*@
+</div>
+}
+
+<div>
+    @Html.ActionLink("Already Register Go to Login", "Login","Login")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

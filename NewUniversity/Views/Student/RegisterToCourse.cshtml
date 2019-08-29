@@ -1,0 +1,62 @@
+﻿@model NewUniversity.Models.RegisterToCourse
+
+@{
+    ViewBag.Title = "RegisterToCourse";
+}
+<script src="~/Scripts/jquery-3.4.1.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#BranchName').change(function () {
+            $('#CourseName').empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetCascadeData")',
+                dataType: 'json',
+                data: { astrDepartmentID : $('#BranchName').val() },
+                success: function (courses) {
+                    $.each(courses, function (i, course) {
+                        $("#CourseName").append('<option value="' + course.Value + '">' + course.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to load Courses. ' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+<h2>Course Registration </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> Department : </label>
+            <div class="col-md-10">
+                @Html.DropDownList("BranchName", Model.istListItems, "Select Branch", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.istListItems, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class=" control-label col-md-2"> Courses : </label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(Model => Model.CourseID, new SelectList(string.Empty, "Value", "Text"), "Select Course", htmlAttributes: new { @class = "form-control", @id = "CourseName" });
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register to this Course" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

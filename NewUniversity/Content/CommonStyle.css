@@ -1,0 +1,68 @@
+﻿.alignCenter {
+    text-align: center;
+    width: 100%;
+}
+
+.setWidth {
+    width: 200px;
+}
+
+.user_name {
+    background-color: transparent;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 25px;
+    font-family: 'Times New Roman'
+}
+
+tbody div {
+    overflow: auto;
+    max-height: 400px;
+    background-color: white;
+}
+
+th {
+    background-color: transparent;
+    color: white;
+}
+
+tbody div td {
+    color: #134f84;
+    font-size: medium;
+}
+
+.backColor_custom {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+
+tr tbody td {
+    background-color: transparent;
+}
+
+.Width400 {
+    width: 400px;
+}
+
+label {
+    font-size: medium !important;
+}
+
+.setScroll {
+    overflow: scroll;
+    height: 100%;
+}
+.CustomeRowsColors{
+
+}
+ .CustomeRowsColors tr:nth-child(odd) {
+        background: #b8d1f3;
+    }
+/*  Define the background color for all the EVEN background rows  */
+    .CustomeRowsColors tr:nth-child(even) {
+        background: #dae5f4;
+    }
+.sidbarFont{
+    font-size:medium !important;
+}

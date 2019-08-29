@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NewUniversity.Models.DepartmentCourses>
+@{
+    ViewBag.Title = "DepartmentCourses";
+}
+
+<h2>Departmentwise Courses</h2>
+@Styles.Render("~/Content/CommonStyle.css")
+
+<div class="alignCenter">
+
+    <table id="dtDynamicVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+
+                <th><label id="lblCourseID">Course ID</label></th>
+                <th> <label id="lblFaculty">Faculty</label></th>
+                <th><label id="lblSubject">Subject</label></th>
+                <th> <label id="lblCredits">Credits</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="6">
+                    <div class="scorllit">
+                        <table>
+                            @foreach (var item in Model)
+                            {
+                                <tr >
+
+                                    <td class="Width400">
+                                        @Html.DisplayFor(modelItem => item.ObjCourse.CourseID)
+                                    </td>
+                                    <td class="Width400">
+                                        @Html.DisplayFor(modelItem => item.ObjDepartment.Name)
+                                    </td>
+                                    <td class="Width400">
+                                        @Html.DisplayFor(modelItem => item.ObjCourse.Title)
+                                    </td>
+                                    <td class="Width400">
+                                        @Html.DisplayFor(modelItem => item.ObjCourse.Credits)
+                                    </td>
+                                </tr>
+
+                            }
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</div>
+
+
